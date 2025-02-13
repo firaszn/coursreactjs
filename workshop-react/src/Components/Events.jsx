@@ -5,7 +5,6 @@ import eventsData from "../events.json";
 
 const Events = () => {
   const [events, setEvents] = useState(eventsData);
-  const [showWelcome, setShowWelcome] = useState(true);
 
   const bookEvent = (eventToBook) => {
     setEvents(
@@ -30,7 +29,7 @@ const Events = () => {
     <Container>
       <Row>
         {events.map((event) => (
-          <Col key={event.id} md={4}>
+          <Col key={event.id} >
             <Event event={event} onBook={bookEvent} onLike={toggleLike} />
           </Col>
         ))}
