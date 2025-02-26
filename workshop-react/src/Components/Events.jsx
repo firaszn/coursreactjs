@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Alert } from "react-bootstrap";
-import Event from "./Event";
+import React, { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Event from "./Event.jsx";
 import eventsData from "../events.json";
 
 const Events = () => {
@@ -29,8 +30,10 @@ const Events = () => {
     <Container>
       <Row>
         {events.map((event) => (
-          <Col key={event.id} >
+          <Col key={event.id}>
             <Event event={event} onBook={bookEvent} onLike={toggleLike} />
+            {/* Lien vers les détails */}
+            <Link to={`/events/${event.id}`}>Voir les détails</Link>
           </Col>
         ))}
       </Row>

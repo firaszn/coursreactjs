@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import './App.css'
 import TestFunctions from "./Ecmascript/TestFunctions";
 import Counter from './Components/Counter';
@@ -9,6 +9,10 @@ import TodoList from './Components/TodoList';
 import ComponentClass from './Components/ComponentClass';
 import Events from './Components/Events';
 import Products from './Components/products';
+import NavigationBar from './Components/Navbar';
+import { Route, Routes } from 'react-router-dom';
+import NotFound from './Components/NotFound';
+import EventDetails from './Components/EventDetails';
 
 
 function App() {
@@ -16,6 +20,7 @@ function App() {
 
   return (
     <div>
+
         {/* <TestFunctions />
         <ComponentClass/>
         <Counter initialCount={5} step={2} />
@@ -24,7 +29,15 @@ function App() {
       <NotesManager initialNotes={[10, 15, 18]} />
       <TodoList initialTasks={[{ name: "Apprendre React", priority: "Haute", completed: false }]} /> */}
      {/* <Events /> */}
-      <Products/>
+     <NavigationBar />
+      <Suspense fallback={<div>Chargement...</div>}>
+        <Routes>
+          <Route path="/events" element={<Events />} />
+          <Route path="/events/:eventId" element={<EventDetails />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      {/* <Products/> */}
     </div>
 );
 }

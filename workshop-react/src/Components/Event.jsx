@@ -6,11 +6,10 @@ const Event = ({ event, onBook, onLike }) => {
 
   return (
     <Card style={{ width: "18rem", margin: "10px" }}>
-    <Card.Img variant="top" src={event.img } />
-    <Card.Body>
-
+      <Card.Img variant="top" src={event.img} />
+      <Card.Body>
         <Card.Title>{event.name}</Card.Title>
-        <Card.Text>{event.description}</Card.Text>salut
+        <Card.Text>{event.description}</Card.Text>
         <Card.Text>Price: ${event.price}</Card.Text>
         <Card.Text>Tickets Left: {event.nbTickets}</Card.Text>
         <Card.Text>Participants: {event.nbParticipants}</Card.Text>
@@ -27,7 +26,7 @@ const Event = ({ event, onBook, onLike }) => {
             setLiked(!liked);
             onLike(event.id);
           }}
-          style={{ marginLeft: "100px" }}
+          style={{ marginLeft: "10px" }}
         >
           {liked ? "Dislike" : "Like"}
         </Button>
