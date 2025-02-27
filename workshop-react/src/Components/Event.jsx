@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Event = ({ event, onBook, onLike }) => {
   const [liked, setLiked] = useState(event.like);
@@ -30,6 +31,10 @@ const Event = ({ event, onBook, onLike }) => {
         >
           {liked ? "Dislike" : "Like"}
         </Button>
+        <Link to={`/update-event/${event.id}`}>
+  <button>Modifier</button>
+</Link>
+
       </Card.Body>
     </Card>
   );

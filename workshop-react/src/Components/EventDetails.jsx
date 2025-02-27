@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import eventsData from "../events.json";
+import { getEventById } from "../services/api";
 
 const EventDetails = () => {
   const { eventId } = useParams();
-  const event = eventsData.find((e) => e.id === parseInt(eventId));
+  const [event, setEvent] = useState(null);
+
+  useEffect(() => {
+    fetchEvent();
+  }, []);
+
+  const fetchEvent = async () => {
+    try {
+      const response = await getEventById(eventId);
+      setEvent(response.data);
+    } catch (error) {
+      setEvent(null);
+    }
+  };
 
   if (!event) {
     return <h2>Événement introuvable</h2>;
